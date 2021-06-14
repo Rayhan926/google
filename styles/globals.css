@@ -1,16 +1,27 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
+.google_footer_bottom {
+  @apply flex justify-center flex-wrap sm:justify-between;
 }
-
-* {
-  box-sizing: border-box;
+.google_footer_bottom ul {
+  @apply w-full flex space-x-5 justify-center flex-wrap sm:w-auto;
+}
+.google_footer_bottom ul li a {
+  @apply px-1 py-3 block cursor-pointer hover:underline;
+}
+.google_container {
+  @apply w-full px-4 sm:px-8 sm:w-full sm:ml-0 md:w-[80%] md:mx-auto lg:w-[670px] lg:ml-[132px];
+}
+.google_footer_bottom ul li a:hover {
+  text-decoration: underline !important;
+}
+.line_clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-line-clamp: 1;
 }
