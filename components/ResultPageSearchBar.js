@@ -1,7 +1,6 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Query } from "../pages/search";
 import { IoMdClose } from "react-icons/io";
-import { BiMicrophone } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { useRouter } from "next/router";
 

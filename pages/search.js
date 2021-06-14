@@ -39,9 +39,9 @@ export async function getServerSideProps(context) {
   const context_key = process.env.CONTEXT_KEY;
 
   const query = context?.query?.q;
-  const useDemoData = true;
+  const useDemoData = false;
   const startIndex = context?.query?.start || "0";
-  const urlToHit = `https://www.googleapis.com/customsearch/v1?key=${api_key}&cx=${context_key}&q=${query}&start=${startIndex}&gl=bd&hl=bn`;
+  const urlToHit = `https://www.googleapis.com/customsearch/v1?key=${api_key}&cx=${context_key}&q=${query}&start=${startIndex}`;
 
   let data;
   if (useDemoData) {
@@ -60,7 +60,3 @@ export async function getServerSideProps(context) {
 
 export default search;
 export { Query };
-// AIzaSyCNcVgJCfmsYLLmy5PLGZ1gOyONydWZhpY
-// ab3c335f52b95ee70
-
-// https://www.googleapis.com/customsearch/v1?key=AIzaSyCNcVgJCfmsYLLmy5PLGZ1gOyONydWZhpY&cx=ab3c335f52b95ee70&q=Bangladesh&start=0
