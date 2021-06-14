@@ -58,8 +58,6 @@ function ResultPageSearchBar() {
               <BsSearch className="text-blue-500 ml-3" />
             </div>
           </button>
-
-          <BiMicrophone className="text-gray-500 w-5 h-full sm:hidden cursor-pointer" />
         </label>
       </form>
     </div>

@@ -3,7 +3,6 @@ import Head from "next/head";
 import ResultPageHeader from "./../components/ResultPageHeader";
 import ResultLists from "./../components/ResultLists";
 import ResultPageFooter from "./../components/ResultPageFooter";
-import Pagination from "./../components/Pagination";
 import ErrorHandle from "./../components/ErrorHandle";
 import dummy_json_data from "../dummy_json_data";
 
@@ -11,7 +10,6 @@ const Query = createContext();
 
 function search({ data }) {
   const searchTerm = data?.queries?.request[0]?.searchTerms;
-  console.log(data);
   return (
     <>
       <Head>
@@ -37,10 +35,13 @@ function search({ data }) {
 }
 
 export async function getServerSideProps(context) {
+  const api_key = process.env.API_KEY;
+  const context_key = process.env.CONTEXT_KEY;
+
   const query = context?.query?.q;
   const useDemoData = true;
   const startIndex = context?.query?.start || "0";
-  const urlToHit = `https://www.googleapis.com/customsearch/v1?key=${process.env.api_key}&cx=${process.env.cx}&q=${query}&start=${startIndex}`;
+  const urlToHit = `https://www.googleapis.com/customsearch/v1?key=${api_key}&cx=${context_key}&q=${query}&start=${startIndex}&gl=bd&hl=bn`;
 
   let data;
   if (useDemoData) {

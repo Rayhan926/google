@@ -28,7 +28,7 @@ function ResultLists({ data }) {
         </p>
       </div>
       <div
-        className="google_container pt-[7px] sm:pt-0 bg-gray-200 sm:bg-white"
+        className="google_container pt-[7px] sm:pt-0 bg-[#ebebeb] sm:bg-white"
         style={{ paddingLeft: "0", paddingRight: "0" }}
       >
         {items.map((item, index) => (
@@ -37,11 +37,11 @@ function ResultLists({ data }) {
             className="mt-2 px-4 bg-white py-3 sm:py-0 sm:px-8 sm:mt-8 first:mt-0 sm:first:mt-2"
           >
             <div>
-              <a href={item.link} className="group inline-block">
-                <p className="text-[#18191b] text-[15px] line_clamp">
+              <a href={item.link} className="group inline-block mb-1.5 sm:mb-1">
+                <p className="text-[#18191b] text-[15px] w-[80%] sm:w-auto line_clamp mb-1.5 sm:mb-1">
                   {createBreadcrump(item.formattedUrl)}
                 </p>
-                <h3 className="text-[#1a0dab] text-xl group-hover:underline font-medium ">
+                <h3 className="text-blue-700 md:text-[#1a0dab] text-xl group-hover:underline">
                   {item.title}
                 </h3>
               </a>
