@@ -4,21 +4,23 @@ const createBreadcrump = (url) => {
   let urlOrigin = new URL(url).origin;
   let originLessUrl = url.replace(urlOrigin, "");
   let parts = originLessUrl.split("/").join(" > ").trim();
-  let breadcrumb = urlOrigin + "  " + parts;
-  let lastChar = breadcrumb.charAt(breadcrumb.length - 1);
+  let lastChar = parts.charAt(parts.length - 1);
   if (lastChar == ">") {
-    breadcrumb = breadcrumb.slice(0, -1);
+    parts = parts.slice(0, -1);
   } else {
-    breadcrumb = breadcrumb;
+    parts = parts;
   }
-  return breadcrumb;
+  return (
+    <>
+      <span className="text-[#000000]">{urlOrigin}</span> {parts}
+    </>
+  );
 };
 
 function ResultLists({ data }) {
-  const items = data.items;
-  const total_results =
-    data.searchInformation.totalResults || data.queries.request[0].totalResults;
-  const time_taken = data.searchInformation.formattedSearchTime;
+  const items = data.results.organic;
+  const total_results = "--------";
+  const time_taken = data.meta.time_taken.toFixed(2);
 
   return (
     <>
@@ -37,9 +39,9 @@ function ResultLists({ data }) {
             className="mt-2 px-4 bg-white py-3 sm:py-0 sm:px-8 sm:mt-8 first:mt-0 sm:first:mt-2"
           >
             <div>
-              <a href={item.link} className="group inline-block mb-1.5 sm:mb-1">
-                <p className="text-[#18191b] text-[15px] w-[80%] sm:w-auto line_clamp mb-1.5 sm:mb-1">
-                  {createBreadcrump(item.formattedUrl)}
+              <a href={item.url} className="group inline-block mb-1.5 sm:mb-1">
+                <p className="text-gray-600 text-[15px] w-[80%] sm:w-auto line_clamp mb-1.5 sm:mb-1">
+                  {createBreadcrump(item.url)}
                 </p>
                 <h3 className="text-blue-700 md:text-[#1a0dab] text-xl group-hover:underline">
                   {item.title}

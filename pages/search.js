@@ -5,24 +5,23 @@ import ResultLists from "./../components/ResultLists";
 import ResultPageFooter from "./../components/ResultPageFooter";
 import ErrorHandle from "./../components/ErrorHandle";
 import dummy_json_data from "../dummy_json_data";
-
+import axios from "axios";
 const Query = createContext();
 
 function search({ data }) {
-  const searchTerm = data?.queries?.request[0]?.searchTerms;
   return (
     <>
       <Head>
-        <title>{searchTerm} - Google Search | By Saymon</title>
+        <title>{data.meta.query} - Google Search | By Saymon</title>
       </Head>
 
       <div className="grid min-h-screen">
         <div className="self-start overflow-hidden">
-          <Query.Provider value={searchTerm}>
+          <Query.Provider value={data.meta.query}>
             <ResultPageHeader />
           </Query.Provider>
 
-          {Number(data?.searchInformation?.totalResults) > 0 ? (
+          {Number(data?.meta?.results) > 0 ? (
             <ResultLists data={data} />
           ) : (
             <ErrorHandle data={data} />
@@ -35,20 +34,38 @@ function search({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const api_key = process.env.API_KEY;
-  const context_key = process.env.CONTEXT_KEY;
-
   const query = context?.query?.q;
-  const useDemoData = false;
-  const startIndex = context?.query?.start || "0";
-  const urlToHit = `https://www.googleapis.com/customsearch/v1?key=${api_key}&cx=${context_key}&q=${query}&start=${startIndex}`;
+  const page = context.query.page || "2";
+
+  let apiKeys = [
+    "366e2efc91msh7ade64d1c78c515p1e57c1jsne92da62459df",
+    "9892dfbcc2mshab4b6ed46c31531p18dd3cjsnfd91ccf14073",
+    "6aa13efb47msh874e3a534b195e8p1e532cjsne78cf256591c",
+  ];
+  let pickAKey = Math.floor(Math.random(0, apiKeys.length) * apiKeys.length);
+
+  const options = {
+    method: "GET",
+    url: "https://google-search5.p.rapidapi.com/google-serps/",
+    params: {
+      q: query,
+      page: page,
+      gl: "us",
+      hl: "en",
+    },
+    headers: {
+      "x-rapidapi-key": apiKeys[pickAKey],
+      "x-rapidapi-host": "google-search5.p.rapidapi.com",
+    },
+  };
+  const dummy = false;
 
   let data;
-  if (useDemoData) {
+  if (dummy) {
     data = dummy_json_data;
   } else {
-    const res = await fetch(urlToHit);
-    data = await res.json();
+    const req = await axios.request(options);
+    data = await req.data.data;
   }
 
   return {

@@ -6,7 +6,7 @@ function Footer() {
         <div className="pb-3 px-7">
           <p className="text-center sm:text-left">Bangladesh</p>
         </div>
-        <div className="border-t border-gray-300 google_footer_bottom px-7">
+        <div className="border-t border-gray-300 google_footer_bottom px-7 py-1">
           <ul>
             <li>
               <a href="#">About</a>
@@ -35,7 +35,7 @@ function Footer() {
           </ul>
         </div>
       </footer>
-      <ResultPageFooter cstmClass="mt-0" />
+      <ResultPageFooter mt0 />
     </div>
   );
 }

@@ -9,7 +9,7 @@
   @apply w-full flex space-x-5 justify-center flex-wrap sm:w-auto;
 }
 .google_footer_bottom ul li a {
-  @apply px-1 py-3 block cursor-pointer hover:underline;
+  @apply px-1 py-1 sm:py-3 block cursor-pointer hover:underline;
 }
 .google_container {
   @apply w-full px-4 sm:px-8 sm:w-full sm:ml-0 md:w-[80%] md:mx-auto lg:w-[670px] lg:ml-[132px];

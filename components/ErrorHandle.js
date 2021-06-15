@@ -18,7 +18,7 @@ function ErrorHandle({ data }) {
               <p className="mb-3">
                 Your search -{" "}
                 <span className="font-bold text-black">
-                  {data?.queries?.request[0]?.searchTerms}
+                  {data?.meta?.query}
                 </span>{" "}
                 - did not match any documents.
               </p>

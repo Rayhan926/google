@@ -1,14 +1,20 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Query } from "../pages/search";
 import { IoMdClose } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 import { useRouter } from "next/router";
 
 function ResultPageSearchBar() {
+  const [defaultQuery, setDefaultQuery] = useState("");
   const router = useRouter();
   const queryValue = useContext(Query);
   const searchInputRef = useRef("");
   const [trackValue, setTrackValue] = useState(true);
+
+  useEffect(() => {
+    setDefaultQuery(queryValue || "");
+  }, [queryValue]);
+  console.log(queryValue);
 
   const searchGoogle = (e) => {
     e.preventDefault();
@@ -37,7 +43,7 @@ function ResultPageSearchBar() {
                 ? setTrackValue(true)
                 : setTrackValue(false)
             }
-            defaultValue={queryValue}
+            defaultValue={defaultQuery}
           />
 
           {trackValue && (
