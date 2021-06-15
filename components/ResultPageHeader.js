@@ -11,7 +11,7 @@ import { FiMoreVertical } from "react-icons/fi";
 import HeaderTab from "./HeaderTab";
 import { useRouter } from "next/router";
 
-function ResultPageHeader() {
+function ResultPageHeader({ query }) {
   const router = useRouter();
   return (
     <>
@@ -31,7 +31,7 @@ function ResultPageHeader() {
               />
             </div>
             <div className="ml-5 sm:ml-6 md:ml-7 lg:ml-8 hidden sm:block">
-              <ResultPageSearchBar />
+              <ResultPageSearchBar query={query} />
             </div>
           </div>
           <div className="flex items-center">
@@ -40,7 +40,7 @@ function ResultPageHeader() {
           </div>
         </div>
         <div className="mt-3 sm:hidden">
-          <ResultPageSearchBar />
+          <ResultPageSearchBar query={query} />
         </div>
       </div>
       <div className="border-b border-gray-200">

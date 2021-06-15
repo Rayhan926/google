@@ -1,4 +1,3 @@
-import { createContext } from "react";
 import Head from "next/head";
 import ResultPageHeader from "./../components/ResultPageHeader";
 import ResultLists from "./../components/ResultLists";
@@ -6,7 +5,6 @@ import ResultPageFooter from "./../components/ResultPageFooter";
 import ErrorHandle from "./../components/ErrorHandle";
 import dummy_json_data from "../dummy_json_data";
 import axios from "axios";
-const Query = createContext();
 
 function search({ data }) {
   return (
@@ -18,10 +16,7 @@ function search({ data }) {
 
       <div className="grid min-h-screen">
         <div className="self-start overflow-hidden">
-          <Query.Provider value={data.meta.query}>
-            <ResultPageHeader />
-          </Query.Provider>
-
+          <ResultPageHeader query={data.meta.query} />
           {Number(data?.meta?.results) > 0 ? (
             <ResultLists data={data} />
           ) : (
@@ -77,4 +72,3 @@ export async function getServerSideProps(context) {
 }
 
 export default search;
-export { Query };

@@ -1,32 +1,26 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { Query } from "../pages/search";
+import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 import { useRouter } from "next/router";
 
-function ResultPageSearchBar() {
-  const [defaultQuery, setDefaultQuery] = useState("");
+function ResultPageSearchBar({ query }) {
   const router = useRouter();
-  const queryValue = useContext(Query);
-  const searchInputRef = useRef("");
-  const [trackValue, setTrackValue] = useState(true);
+  const [inputQuery, setInputQuery] = useState("");
 
   useEffect(() => {
-    setDefaultQuery(queryValue || "");
-  }, [queryValue]);
-  console.log(queryValue);
+    setInputQuery(query);
+  }, [query]);
 
   const searchGoogle = (e) => {
     e.preventDefault();
-    const searchTerm = searchInputRef.current.value;
-    if (!searchTerm) return;
-    let plusify = searchTerm.split(" ").join("+");
+    if (!inputQuery) return;
+    let plusify = inputQuery.split(" ").join("+");
     router.push(`/search?q=${plusify}`);
   };
 
-  const clearSearchField = () => {
-    searchInputRef.current.value = "";
-    setTrackValue(false);
+  const handleChange = (e) => {
+    const inpVal = e.target.value;
+    setInputQuery(inpVal);
   };
 
   return (
@@ -37,20 +31,15 @@ function ResultPageSearchBar() {
           <input
             type="text"
             className="w-full focus:outline-none px-3 sm:mt-[-4px] leading-[0px] text-gray-800 text-lg"
-            ref={searchInputRef}
-            onChange={() =>
-              searchInputRef.current.value
-                ? setTrackValue(true)
-                : setTrackValue(false)
-            }
-            defaultValue={defaultQuery}
+            onChange={(e) => handleChange(e)}
+            value={inputQuery}
           />
 
-          {trackValue && (
+          {inputQuery && (
             <div className=" sm:border-r border-gray-300 h-full sm:pr-2 flex items-center">
               <IoMdClose
                 className="text-gray-500 w-5 h-full cursor-pointer"
-                onClick={() => clearSearchField()}
+                onClick={() => setInputQuery(false)}
               />
             </div>
           )}
