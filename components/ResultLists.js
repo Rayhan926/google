@@ -19,7 +19,7 @@ const createBreadcrump = (url) => {
 
 function ResultLists({ data }) {
   const items = data.results.organic;
-  const total_results = "--------";
+  const total_results = Math.floor(Math.random(0, 1) * 999999999);
   const time_taken = data.meta.time_taken.toFixed(2);
 
   return (

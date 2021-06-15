@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Pagination() {
   const router = useRouter();
-  const currentPage = router.query.start || 1;
+  const currentPage = router.query.page || 1;
   const currentQuery = router.query.q;
   let plusify = currentQuery.split(" ").join("+");
   let pagination = [];

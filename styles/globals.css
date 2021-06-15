@@ -25,3 +25,6 @@
   white-space: normal;
   -webkit-line-clamp: 1;
 }
+#nprogress .bar {
+  background: linear-gradient(to right, #fff, rgb(0, 127, 231)) !important;
+}

@@ -12,6 +12,7 @@ function search({ data }) {
   return (
     <>
       <Head>
+        <link rel="shortcut icon" href="/static/favicon.ico" />
         <title>{data.meta.query} - Google Search | By Saymon</title>
       </Head>
 
@@ -35,7 +36,7 @@ function search({ data }) {
 
 export async function getServerSideProps(context) {
   const query = context?.query?.q;
-  const page = context.query.page || "2";
+  const page = context.query.page || "1";
 
   let apiKeys = [
     "366e2efc91msh7ade64d1c78c515p1e57c1jsne92da62459df",
@@ -58,7 +59,7 @@ export async function getServerSideProps(context) {
       "x-rapidapi-host": "google-search5.p.rapidapi.com",
     },
   };
-  const dummy = false;
+  const dummy = true;
 
   let data;
   if (dummy) {

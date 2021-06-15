@@ -46,7 +46,7 @@ function HomeForm() {
             )}
           </label>
 
-          <div className="flex justify-center w-full mt-5 flex-wrap">
+          <div className="hidden sm:flex justify-center w-full mt-5 flex-wrap">
             <button className="focus:outline-none px-4 py-1.5 rounded border text-gray-700 my-1 mx-1 border-gray-200 hover:border-gray-300 bg-white text-sm sm:text-base">
               Google Search
             </button>
