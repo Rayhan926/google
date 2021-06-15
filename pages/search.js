@@ -59,7 +59,7 @@ export async function getServerSideProps(context) {
       "x-rapidapi-host": "google-search5.p.rapidapi.com",
     },
   };
-  const dummy = true;
+  const dummy = false;
 
   let data;
   if (dummy) {
